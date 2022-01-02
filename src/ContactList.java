@@ -66,6 +66,7 @@ public class ContactList {
         final int  ADD_CONTACTS=1;
         final int  EDIT_CONTACTS=2;
         final int DELETE=3;
+        final int DISPLAY=4;
         final int FIRST_NAME=1;
         final int LAST_NAME=2;
         final int ADDRESS=3;
@@ -76,12 +77,15 @@ public class ContactList {
         //(Declaring List of Person type)
         ArrayList<Contacts> list=new ArrayList<>();
         int choice,pincode,editField;
+        //Check whether data present or not during searching
+        int status;
         String lastName,address,email,city,mobile,firstName,search,fullName;
         do {
             System.out.println("[1] - Add Contacts");
             System.out.println("[2] - Edit Contacts");
             System.out.println("[3] - Delete");
-            System.out.println("[4] - Exit");
+            System.out.println("[4] - Display");
+            System.out.println("[5] - Exit");
             choice=sc.nextInt();
             switch (choice)
             {
@@ -108,6 +112,7 @@ public class ContactList {
                     break;
                 case EDIT_CONTACTS:
                     sc.nextLine();
+                    status=0;
                     System.out.println("Enter FirstName Wants to be EDIT");
                     search=sc.nextLine();
                     for(int i=0;i< list.size();i++)
@@ -115,6 +120,7 @@ public class ContactList {
 
                         if (list.get(i).firstName.equals(search))
                         {
+                            status=1;
                             System.out.println("Which fields want to be edit");
                             System.out.println("[1] First Name");
                             System.out.println("[2] Last Name");
@@ -179,25 +185,53 @@ public class ContactList {
 
 
                         }
+
+                    }
+                    if(status==0)
+                    {
+                        System.out.println("Item Not Found");
                     }
                     break;
                 case DELETE:
+                    status=0;
                     sc.nextLine();
                     System.out.println("Enter Name Wants to be DELETE");
                     search=sc.nextLine();
                     for(int i=0;i< list.size();i++)
                     {
-                        fullName=list.get(i).firstName+' '+list.get(i).lastName;
-                        if(fullName==search)
+
+                        firstName=list.get(i).firstName;
+                        if(Objects.equals(firstName, search))
                         {
+                            status=1;
                             list.remove(i);
+
                         }
+                    }
+                    if(status==0)
+                    {
+                        System.out.println("Item Not Found");
                     }
                     break;
 
+                case DISPLAY:
+                        for(int i=0;i<list.size();i++)
+                        {
+                            System.out.println("First Name " + list.get(i).firstName);
+                            System.out.println("Last Name " + list.get(i).lastName);
+                            System.out.println("Address " + list.get(i).address);
+                            System.out.println("City " + list.get(i).city);
+                            System.out.println("Email " + list.get(i).email);
+                            System.out.println("Pincode " + list.get(i).pincode);
+                        }
+                        if(list.isEmpty())
+                        {
+                            System.out.println("The List Is Empty");
+                        }
+                        break;
 
             }
-        }while(choice!=4);
+        }while(choice!=5);
         
     }
 }
