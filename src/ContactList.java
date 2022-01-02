@@ -37,6 +37,7 @@ public class ContactList {
         final int  ADD_CONTACTS=1;
         final int  EDIT_CONTACTS=2;
         int choice,pincode;
+        //(Declaring List of Person type)
         ArrayList<Contacts> list=new ArrayList<>();
         String lastName,address,email,city,mobile,firstName,search;
         do {
@@ -54,6 +55,7 @@ public class ContactList {
                     firstName=sc.nextLine();
                     System.out.println("Enter the LastName");
                     lastName=sc.nextLine();
+                    System.out.println(lastName);
                     System.out.println("Enter the Address");
                     address=sc.nextLine();
                     System.out.println("Enter the City");
@@ -65,18 +67,40 @@ public class ContactList {
                     System.out.println("Enter the Pincode");
                     pincode=sc.nextInt();
                     Contacts c1=new Contacts(firstName,lastName,city,address,email,mobile,pincode);
+                    // Adding objects to the ArrayList
                     list.add(c1);
+                    System.out.println("List size"+list.size());
                     break;
                 case EDIT_CONTACTS:
                     sc.nextLine();
                     System.out.println("Enter Item Wants to be EDIT");
                     search=sc.nextLine();
-                   for(int i=0;i< list.size();i++)
-                   {
-                       if (list.get(i).firstName.equals(search)) {
-                           System.out.println("hi");
-                       }
-                   }
+                    for(int i=0;i< list.size();i++)
+                    {
+                        if (list.get(i).firstName.equals(search))
+                        {
+                            sc.nextLine();
+                            System.out.println("Enter the FirstName");
+                            firstName=sc.nextLine();
+                            System.out.println("Enter the LastName");
+                            lastName=sc.nextLine();
+                            System.out.println(lastName);
+                            System.out.println("Enter the Address");
+                            address=sc.nextLine();
+                            System.out.println("Enter the City");
+                            city=sc.nextLine();
+                            System.out.println("Enter the Email");
+                            email=sc.nextLine();
+                            System.out.println("Enter the Mobile");
+                            mobile=sc.nextLine();
+                            System.out.println("Enter the Pincode");
+                            pincode=sc.nextInt();
+                            System.out.println("List size"+list.size());
+                            Contacts c2=new Contacts(firstName,lastName,city,address,email,mobile,pincode);
+                            // Update objects to the ArrayList
+                            list.set(i,c2);
+                        }
+                    }
                     break;
 
 
