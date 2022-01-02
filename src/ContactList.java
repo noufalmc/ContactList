@@ -54,7 +54,6 @@ public class ContactList {
                     firstName=sc.nextLine();
                     System.out.println("Enter the LastName");
                     lastName=sc.nextLine();
-                    System.out.println(lastName);
                     System.out.println("Enter the Address");
                     address=sc.nextLine();
                     System.out.println("Enter the City");
@@ -67,7 +66,6 @@ public class ContactList {
                     pincode=sc.nextInt();
                     Contacts c1=new Contacts(firstName,lastName,city,address,email,mobile,pincode);
                     list.add(c1);
-                    System.out.println("List size"+list.size());
                     break;
                 case EDIT_CONTACTS:
                     sc.nextLine();
